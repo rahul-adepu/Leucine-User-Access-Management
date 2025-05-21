@@ -1,6 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const AppDataSource = require("./src/config/db");
+const usersRoute = require("./src/routes/user.routes");
+const authMiddleware = require("./src/middlewares/authMiddleware");
 
 dotenv.config();
 
@@ -13,7 +15,10 @@ app.get("/", (req, res) => {
   res.send("User Access Management API is running 🚀");
 });
 
-const usersRoute = require("./src/routes/user.routes");
+app.get("/toCheckWhetherUserLoggedIn", authMiddleware, (req, res) => {
+  res.status(200).json({ message: "Login Successfull I am in index.js file" });
+});
+
 app.use("/api/users", usersRoute);
 
 AppDataSource.initialize()
