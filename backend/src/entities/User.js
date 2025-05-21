@@ -5,19 +5,20 @@ const User = new EntitySchema({
   columns: {
     id: {
       type: "int",
-      primary: "true",
-      generated: "true",
+      primary: true,
+      generated: true,
     },
     username: {
       type: "varchar",
-      unique: "true",
-    },
-    email: {
-      type: "varchar",
-      unique: "true",
+      unique: true,
     },
     password: {
       type: "varchar",
+    },
+    role: {
+      type: "enum",
+      enum: ["Employee", "Manager", "Admin"],
+      default: "Employee",
     },
   },
 });

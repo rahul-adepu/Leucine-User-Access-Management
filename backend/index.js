@@ -7,9 +7,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("User Access Management API is running 🚀");
 });
+
+const usersRoute = require("./src/routes/user.routes");
+app.use("/api/users", usersRoute);
 
 AppDataSource.initialize()
   .then(() => {
