@@ -1,12 +1,24 @@
 const express = require("express");
+const dotenv = require("dotenv");
+const AppDataSource = require("./src/config/db");
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 8080;
 
+app.get("/", (req, res) => {
+  res.send("User Access Management API is running 🚀");
+});
 
-app.get('/',(req,res)=>{
-    res.send("Hello from server")
-})
+AppDataSource.initialize()
+  .then(() => {
+    console.log("PostgreSQL connected successfully using TypeORM");
 
-app.listen(8080,()=>{
-    console.log("Server is running")
-})
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error during DB connection:", error);
+  });
