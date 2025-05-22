@@ -5,6 +5,7 @@ const usersRoute = require("./src/routes/user.routes");
 const authMiddleware = require("./src/middlewares/authMiddleware");
 const roleMiddleware = require("./src/middlewares/roleMiddleware");
 const softwareRoute = require("./src/routes/software.routes");
+const requestRouter = require("./src/routes/request.routes");
 
 dotenv.config();
 
@@ -32,6 +33,8 @@ app.use(
   roleMiddleware("Admin"),
   softwareRoute
 );
+
+app.use("/api/requests", requestRouter);
 
 AppDataSource.initialize()
   .then(() => {
