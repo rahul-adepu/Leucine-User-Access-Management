@@ -56,7 +56,9 @@ const loginUser = async (req, res) => {
       process.env.JWT_SECRET
     );
 
-    return res.status(200).json({ message: "Login successful", token });
+    return res
+      .status(200)
+      .json({ message: "Login successful", token, role: user.role });
   } catch (error) {
     console.error("Login error:", error);
     return res.status(500).json({ message: "Something went wrong" });

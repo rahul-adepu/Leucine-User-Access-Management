@@ -35,3 +35,14 @@ exports.createSoftware = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.getAllSoftwares = async (req, res) => {
+  try {
+    const softwares = await softwareRepository.find({ order: { id: "DESC" } });
+
+    return res.json(softwares);
+  } catch (error) {
+    console.error("Error fetching softwares:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};

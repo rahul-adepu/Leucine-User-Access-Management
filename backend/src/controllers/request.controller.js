@@ -31,6 +31,22 @@ exports.createRequest = async (req, res) => {
   }
 };
 
+exports.getAllRequests = async (req, res) => {
+  try {
+    if (req.user.role !== "Manager") {
+      return res
+        .status(403)
+        .json({ message: "Only Managers can view requests" });
+    }
+
+    const requests = await requestRepo.find({ order: { id: "DESC" } });
+    return res.json(requests);
+  } catch (error) {
+    console.error("Error fetching requests:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 exports.updateRequestStatus = async (req, res) => {
   try {
     if (req.user.role !== "Manager") {
