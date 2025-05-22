@@ -30,3 +30,13 @@ exports.createRequest = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.getAllRequests = async (req, res) => {
+  try {
+    const requests = await requestRepo.find({ order: { id: "DESC" } });
+    return res.json(requests);
+  } catch (error) {
+    console.error("Error fetching requests:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
