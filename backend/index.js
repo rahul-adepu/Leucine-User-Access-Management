@@ -18,15 +18,7 @@ app.get("/", (req, res) => {
   res.send("User Access Management API is running 🚀");
 });
 
-app.get("/toCheckWhetherUserLoggedIn", authMiddleware, (req, res) => {
-  res.status(200).json({ message: "Login Successfull I am in index.js file" });
-});
-
-app.get("/admin", authMiddleware, roleMiddleware("Admin"), (req, res) => {
-  res.json({ message: "Welcome Admin!" });
-});
-
-app.use("/api/users", usersRoute);
+app.use("/api/auth", usersRoute);
 app.use(
   "/api/software",
   authMiddleware,
