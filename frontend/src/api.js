@@ -4,7 +4,7 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const loginAPI = async (username, password) => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/login`, {
+    const response = await axios.post(`${BASE_URL}/api/auth/login`, {
       username,
       password,
     });
@@ -26,7 +26,7 @@ export const loginAPI = async (username, password) => {
 
 export const signupAPI = async (formData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/signup`, formData);
+    const response = await axios.post(`${BASE_URL}/api/auth/signup`, formData);
     return { success: true, data: response.data };
   } catch (error) {
     return {
