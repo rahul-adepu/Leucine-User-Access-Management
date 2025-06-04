@@ -10,10 +10,16 @@ import {
   Input,
   VStack,
   useToast,
+  Flex,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ username: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -56,48 +62,62 @@ export default function LoginPage() {
   };
 
   return (
-    <Box
-      maxW="400px"
-      mx="auto"
-      mt="50px"
-      p="6"
-      bg="gray.50"
-      borderRadius="md"
-      boxShadow="md"
-    >
-      <Heading mb="6" size="lg" textAlign="center">
-        Login
-      </Heading>
-      <form onSubmit={handleSubmit}>
-        <VStack spacing="4">
-          <FormControl>
-            <FormLabel>Username</FormLabel>
-            <Input
-              name="username"
-              placeholder="Enter your name"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+    <Flex minH="100vh" justify="center" align="center" bg="gray.100">
+      <Box
+        maxW="400px"
+        w="full"
+        p="6"
+        bg="white"
+        borderRadius="md"
+        boxShadow="md"
+      >
+        <Heading mb="6" size="lg" textAlign="center">
+          Login
+        </Heading>
+        <form onSubmit={handleSubmit}>
+          <VStack spacing="4">
+            <FormControl>
+              <FormLabel>Username</FormLabel>
+              <Input
+                name="username"
+                placeholder="Enter your name"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Password</FormLabel>
-            <Input
-              name="password"
-              type="password"
-              placeholder="Enter password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+              <InputGroup>
+                <Input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <InputRightElement>
+                  <IconButton
+                    variant="ghost"
+                    size="sm"
+                    icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                  />
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
 
-          <Button type="submit" colorScheme="blue" width="100%">
-            Login
-          </Button>
-        </VStack>
-      </form>
-    </Box>
+            <Button type="submit" colorScheme="blue" width="100%">
+              Login
+            </Button>
+          </VStack>
+        </form>
+      </Box>
+    </Flex>
   );
 }
