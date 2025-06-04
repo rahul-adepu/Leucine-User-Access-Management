@@ -46,47 +46,54 @@ export default function SignupPage() {
 
   return (
     <Box
-      maxW="400px"
-      mx="auto"
-      mt="50px"
-      p="6"
+      minH="100vh"
       bg="gray.50"
-      borderRadius="md"
-      boxShadow="md"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
     >
-      <Heading mb="6" size="lg" textAlign="center">
-        Signup
-      </Heading>
-      <form onSubmit={handleSubmit}>
-        <VStack spacing="4">
-          <FormControl>
-            <FormLabel>Username</FormLabel>
-            <Input
-              name="username"
-              placeholder="Enter your name"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+      <Box
+        width="100%"
+        maxW="400px"
+        p="6"
+        bg="white"
+        borderRadius="md"
+        boxShadow="md"
+      >
+        <Heading mb="6" size="lg" textAlign="center">
+          Signup
+        </Heading>
+        <form onSubmit={handleSubmit}>
+          <VStack spacing="4">
+            <FormControl>
+              <FormLabel>Username</FormLabel>
+              <Input
+                name="username"
+                placeholder="Enter your name"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Password</FormLabel>
-            <Input
-              name="password"
-              type="password"
-              placeholder="Enter password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+              <Input
+                name="password"
+                type="password"
+                placeholder="Enter password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
 
-          <Button type="submit" colorScheme="green" width="100%">
-            Sign Up
-          </Button>
-        </VStack>
-      </form>
+            <Button type="submit" colorScheme="green" width="100%">
+              Sign Up
+            </Button>
+          </VStack>
+        </form>
+      </Box>
     </Box>
   );
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -7,8 +6,6 @@ import PendingRequests from "./pages/PendingRequests";
 import RequestAccess from "./pages/RequestAccess";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Routes>
