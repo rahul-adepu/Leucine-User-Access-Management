@@ -11,11 +11,14 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { InputGroup, InputRightElement, useDisclosure } from "@chakra-ui/react";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const navigate = useNavigate();
   const toast = useToast();
+  const { isOpen: show, onToggle } = useDisclosure();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -78,14 +81,26 @@ export default function SignupPage() {
 
             <FormControl>
               <FormLabel>Password</FormLabel>
-              <Input
-                name="password"
-                type="password"
-                placeholder="Enter password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
+              <InputGroup>
+                <Input
+                  name="password"
+                  type={show ? "text" : "password"}
+                  placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <InputRightElement h="full">
+                  <Button
+                    variant="ghost"
+                    onClick={onToggle}
+                    size="sm"
+                    _hover={{ bg: "transparent" }}
+                  >
+                    {show ? <ViewOffIcon /> : <ViewIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
 
             <Button type="submit" colorScheme="green" width="100%">
