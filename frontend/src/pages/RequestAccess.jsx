@@ -91,7 +91,7 @@ export default function RequestAccess() {
 
   return (
     <Box maxW="700px" mx="auto" p={6}>
-      <Text fontSize="2xl" mb={6} textAlign="center">
+      <Text fontSize="5xl" mb={6} textAlign="center">
         Request Access to Software
       </Text>
 
