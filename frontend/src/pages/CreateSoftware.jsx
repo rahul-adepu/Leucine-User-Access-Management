@@ -89,7 +89,7 @@ export default function CreateSoftware() {
         width="100%"
         maxW="400px"
       >
-        <Text fontSize="2xl" mb={6} textAlign="center">
+        <Text fontSize="4xl" mb={6} textAlign="center">
           Create Software
         </Text>
 
@@ -129,7 +129,7 @@ export default function CreateSoftware() {
           </CheckboxGroup>
         </FormControl>
 
-        <Button colorScheme="blue" width="100%" type="submit">
+        <Button colorScheme="green" width="100%" type="submit">
           Submit
         </Button>
       </Box>
