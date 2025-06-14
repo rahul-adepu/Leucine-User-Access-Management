@@ -12,6 +12,7 @@ import {
   ModalFooter,
   Textarea,
   useDisclosure,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -94,38 +95,41 @@ export default function RequestAccess() {
         Request Access to Software
       </Text>
 
-      {softwares.map((software) => {
-        const isRequested = requestedSoftwareIds.includes(software.id);
+      <SimpleGrid columns={[1, 2, 3]} spacing={6}>
+        {softwares.map((software) => {
+          const isRequested = requestedSoftwareIds.includes(software.id);
 
-        return (
-          <Box
-            key={software.id}
-            p={4}
-            mb={4}
-            borderWidth="1px"
-            borderRadius="md"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Box>
-              <Text fontWeight="bold">{software.name}</Text>
-              <Text fontSize="sm" color="gray.600">
-                {software.description}
-              </Text>
-            </Box>
-
-            <Button
-              colorScheme={isRequested ? "yellow" : "blue"}
-              onClick={() => handleRequestClick(software)}
-              isDisabled={isRequested}
+          return (
+            <Box
+              key={software.id}
+              p={4}
+              borderWidth="1px"
+              borderRadius="md"
+              boxShadow="sm"
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+              h="100%"
             >
-              {isRequested ? "Pending" : "Request"}
-            </Button>
-          </Box>
-        );
-      })}
+              <Box mb={3}>
+                <Text fontWeight="bold">{software.name}</Text>
+                <Text fontSize="sm" color="gray.600">
+                  {software.description}
+                </Text>
+              </Box>
 
+              <Button
+                colorScheme={isRequested ? "yellow" : "blue"}
+                onClick={() => handleRequestClick(software)}
+                isDisabled={isRequested}
+                mt="auto"
+              >
+                {isRequested ? "Pending" : "Request"}
+              </Button>
+            </Box>
+          );
+        })}
+      </SimpleGrid>
       {/* Modal for entering reason */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
